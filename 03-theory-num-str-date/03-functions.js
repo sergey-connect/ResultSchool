@@ -38,9 +38,9 @@ const arrow = (name, age) => {
 
 const arrow2 = name => console.log("Hello -", name);
 
-function pow(num, exp) {
-    return Math.pow(num, exp)
-}
+// function pow(num, exp) {
+//     return Math.pow(num, exp)
+// }
 
 const pow2 = (num, exp) => Math.pow(num, exp)
 
@@ -62,3 +62,17 @@ function sumAll(...numbers) {
 }
 
 console.log(sumAll(1, 2, 3, 4, 5));
+
+
+// Closures
+
+function createPerson(name) {
+    return function (lastname) {
+        console.log(name + ' ' + lastname);
+    }
+}
+
+const addLastName = createPerson('Sergey')
+
+addLastName('Petrov')
+addLastName('Ivanov')
