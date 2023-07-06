@@ -486,22 +486,166 @@ dec();
 console.log(get()); // 7
 */
 
-function createCounter(value) {
-    return {
-        inc() {
-            return value++
-        }, dec() {
-            return value--
-        }, get() {
-            return value
-        },
-    }
+// function createCounter(value) {
+//     return {
+//         inc() {
+//             return value++
+//         }, dec() {
+//             return value--
+//         }, get() {
+//             return value
+//         },
+//     }
+// }
+
+// const { inc, dec, get } = createCounter(5);
+// console.log(get()); // 5
+// inc();
+// inc();
+// inc();
+// dec();
+// console.log(get()); // 7
+
+
+// ===================== Часть 4 =============
+
+/*
+Задание #1
+
+Напишите функцию calculateAge(), которая принимает день рождения и возвращает количество лет.
+
+const birthDate = new Date('1990-05-20');
+const age = calculateAge(birthDate);
+
+console.log(age);
+*/
+
+// function calculateAge(birthDate) {
+//     let ageNow = new Date().getTime() - birthDate.getTime()
+//     return Math.trunc(ageNow / 1000 / 60 / 60 / 24 / 365.25)
+// }
+
+// const birthDate = new Date('1990-05-20');
+// const age = calculateAge(birthDate);
+
+// console.log(age);
+
+
+/*Задание #2
+
+Напишите функцию getDateDifference(), которая возвращает разницу в днях между двумя датами.
+
+const date1 = new Date('2027-06-01');
+const date2 = new Date('2027-06-10');
+const difference = getDateDifference(date1, date2);
+console.log(difference); // 9
+*/
+
+// function getDateDifference(date1, date2) {
+//     return date2.getDate() - date1.getDate()
+// }
+
+// const date1 = new Date('2027-06-01');
+// const date2 = new Date('2027-06-10');
+// const difference = getDateDifference(date1, date2);
+// console.log(difference); // 9
+
+
+/*
+Задание #3
+
+Напишите функцию getTimeUntilDate(date), которая возвращает объект с информацией о том, 
+сколько времени осталось от текущей даты до переданной. 
+
+const targetDate = new Date('2027-12-31T23:59:59');
+const timeUntilTargetDate = getTimeUntilDate(targetDate);
+console.log(timeUntilTargetDate);
+// { days: 100, hours: 20, minutes: 45, seconds: 31 }
+*/
+
+// function getTimeUntilDate(date) {
+//     const now = new Date()
+//     const timeUntilTarget = {}
+//     let dif = date.getTime() - now.getTime()
+//     timeUntilTarget.days = Math.trunc(dif / 1000 / 60 / 60 / 24)
+//     timeUntilTarget.hours = Math.trunc((dif / 1000 / 60 / 60 - timeUntilTarget.days * 24))
+//     timeUntilTarget.minutes = Math.trunc((dif / 1000 / 60 - timeUntilTarget.days * 24 * 60 - timeUntilTarget.hours * 60))
+//     timeUntilTarget.seconds = Math.trunc((dif / 1000 - timeUntilTarget.days * 24 * 60 * 60 - timeUntilTarget.hours * 60 * 60 - timeUntilTarget.minutes * 60))
+//     return timeUntilTarget
+// }
+
+// const targetDate = new Date('2027-12-31T23:59:59');
+// const timeUntilTargetDate = getTimeUntilDate(targetDate);
+// console.log(timeUntilTargetDate);
+// // { days: 100, hours: 20, minutes: 45, seconds: 31 }
+
+
+/*
+Задание #4
+
+Напишите функцию isWeekends(), которая проверяет, является ли указанная дата выходным днем. 
+
+const date1 = new Date('2027-07-10');  // Суббота
+const date2 = new Date('2027-07-12');  // Понедельник
+
+console.log(isWeekend(date1));  // true
+console.log(isWeekend(date2));  // false
+*/
+
+// const isWeekend = (date) => date.getDay() === 0 || date.getDay() === 6
+
+// const date1 = new Date('2027-07-10');  // Суббота
+// const date2 = new Date('2027-07-12');  // Понедельник
+
+// console.log(isWeekend(date1));  // true
+// console.log(isWeekend(date2));  // false
+
+
+/*
+Задание #5
+
+Напишите функцию, которая проверяет, является ли год високосным. Возвращает true, если да, иначе — false. 
+
+console.log(isLeapYear(2023)); // false
+console.log(isLeapYear(2024)); // true
+*/
+
+// function isLeapYear(year) {
+//     const newYear = new Date(`${year + 1}`)
+//     const yearBefore = new Date(`${year}`)
+//     const days = Math.trunc((+newYear - +yearBefore) / 1000 / 60 / 60 / 24)
+//     return days === 366
+// }
+
+// console.log(isLeapYear(2023)); // false
+// console.log(isLeapYear(2024)); // true
+
+
+/*
+Задание #6
+
+Напишите функцию, которая возвращает последнее число месяца.
+
+// июнь 2027
+console.log(getLastDayOfMonth(2027, 5)); // 30
+
+// февраль 2027
+console.log(getLastDayOfMonth(2027, 1)); // 28
+
+// январь 2027
+console.log(getLastDayOfMonth(2027, 0)); // 31
+*/
+
+function getLastDayOfMonth(year, month) {
+    const date = new Date(year, month + 1, 0)
+    return date.getDate()
 }
 
-const { inc, dec, get } = createCounter(5);
-console.log(get()); // 5
-inc();
-inc();
-inc();
-dec();
-console.log(get()); // 7
+// июнь 2027
+console.log(getLastDayOfMonth(2027, 5)); // 30
+
+// февраль 2027
+console.log(getLastDayOfMonth(2027, 1)); // 28
+
+// январь 2027
+console.log(getLastDayOfMonth(2027, 0)); // 31
